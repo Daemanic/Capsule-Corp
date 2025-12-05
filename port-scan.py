@@ -24,7 +24,7 @@ def searchIP(ipadr, port):
         sock.connect((ipadr, port))
         try:
             service = getBanner(sock)
-            print(f"[+] status: [{port}] | [UP] | {service}\n")
+            print(f"[+] status: [{port}] | [UP] | {service.decode()}\n")
 
             sock.close()
         except socket.timeout:
