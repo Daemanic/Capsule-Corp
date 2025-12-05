@@ -41,8 +41,8 @@ def scanIP(ipadr):
     if domain is None:
         return
     print(f"\n[?] target: {domain}\n")
-    port = 22
-    searchIP(domain, port)
+    for port in range(0,521):
+        searchIP(domain, port)
 
 
 target = input("\n~ ")
