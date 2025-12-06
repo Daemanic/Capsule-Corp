@@ -23,9 +23,9 @@ def searchIP(ipadr, port):
             request = "GET / HTTP/1.0\r\nHost: {}\r\n\r\n".format(ipadr)
             sock.send(request.encode())
         try:
-            service = sock.recv(1024)
-            status = service.decode().split('\n')[0]
-            print(f"[+] status: [{port}] | [UP] {status}\n")
+            banner = sock.recv(1024)
+            service = banner.decode().split('\n')[0]
+            print(f"[+] status: [{port}] | [UP] {service}\n")
         except socket.timeout:
             print(f"[+] status: [{port}] | [NB]\n")
         sock.close()
