@@ -44,15 +44,15 @@ def scanIP(ipadr):
     for port in range(0,521):
         searchIP(domain, port)
 
-
-target = input("\n~ ")
-try:
-    if " " in target:
-        for perIP in target.split(" "):
-            scanIP(perIP)
-    else:
-        scanIP(target)
-
-except KeyboardInterrupt:
-    print("\n[0] executed: ")
-    sys.exit()
+if __name__ == "__main__":
+    target = input("\n~ ")
+    try:
+        if " " in target:
+            for perIP in target.split(" "):
+                scanIP(perIP)
+        else:
+            scanIP(target)
+    
+    except KeyboardInterrupt:
+        print("\n[0] executed: ")
+        sys.exit()
