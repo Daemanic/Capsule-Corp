@@ -1,6 +1,9 @@
-import sys, os, socket
+import sys
+import os
+import socket
 import paramiko
-import threading, time
+import threading
+import time
 
 flag = 0
 def sshConnect(brute):
@@ -12,8 +15,8 @@ def sshConnect(brute):
         flag = 1
         print(f"[+] ssh: {brute}\n")
     except socket.error:
-        print(f"[-] ssh: [CF]\n")
-    except Exception as error:
+        print("[-] ssh: [CF]\n")
+    except Exception:
         print(f"[-] ssh: {brute} [INC]\n")
     ssh.close()
 
@@ -22,10 +25,11 @@ try:
     user = input("[?] user: ")
     bruteFile = input("[?] file: ")
     if os.path.exists(bruteFile):
-        print(f"[~] scan: [ON]\n")
+        print("[~] scan: [ON]\n")
     else:
-        print(f"\n[!] path-error: [?F]\n")
+        print("\n[!] path-error: [?F]\n")
         sys.exit()
+
     with open(bruteFile, "r") as file:
         for line in file.readlines():
             attempt = line.strip()
@@ -37,4 +41,5 @@ try:
             time.sleep(0.5)
 
 except KeyboardInterrupt:
-    print(f"\n[0]")
+    print("\n[0]")
+    sys.exit()
