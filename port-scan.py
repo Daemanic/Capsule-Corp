@@ -3,7 +3,7 @@ import socket
 from IPy import IP
 
 def checkIP(ipadr):
-    try: 
+    try:
         IP(ipadr)
         return str(ipadr)
     except ValueError:
@@ -11,7 +11,7 @@ def checkIP(ipadr):
             host = socket.gethostbyname(ipadr)
             return host
         except socket.gaierror:
-            print(f"\n[!] syntax-error: [?D]\n")
+            print("\n[!] syntax-error: [?D]\n")
             return None
 
 def searchIP(ipadr, port):
@@ -33,9 +33,9 @@ def searchIP(ipadr, port):
         print(f"[-] status: [{port}] | [TO]\n")
     except ConnectionRefusedError:
         print(f"[-] status: [{port}] | [RE]\n")
-    except OSError as e:
+    except OSError:
         print(f"[-] status: [{port}] | [OS]\n")
-     
+
 def scanIP(ipadr):
     domain = checkIP(ipadr)
     if domain is None:
@@ -47,19 +47,19 @@ def scanIP(ipadr):
             if 0 < int(endPort) < 65536:
                 searchIP(domain, int(endPort))
             else:
-                print(f"\n[!] end-port: [?P]\n")
+                print("\n[!] end-port: [?P]\n")
         except ValueError:
-            print(f"\n[!] syntax-error: [?D]\n")
+            print("\n[!] syntax-error: [?D]\n")
 
 if __name__ == "__main__":
     try:
         target = input("\n[?] domain: ")
     except KeyboardInterrupt:
-        print(f"\n[0]")
+        print("\n[0]")
         sys.exit()
     try:
         for perIP in target.split():
             scanIP(perIP)
     except KeyboardInterrupt:
-        print(f"\n[0]")
+        print("\n[0]")
         sys.exit()
