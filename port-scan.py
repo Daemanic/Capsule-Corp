@@ -2,11 +2,21 @@ import sys
 import socket
 from IPy import IP
 
+def connect():
+    try:
+        socket.create_connection(("8.8.8.8", 53), timeout=2)
+        return True
+    except OSError:
+        return False
+
 def checkIP(ipadr):
     try:
         IP(ipadr)
         return str(ipadr)
     except ValueError:
+        if not connect():
+            print("\n[!] connection-error: [?OFLN] ")
+            return None
         try:
             host = socket.gethostbyname(ipadr)
             return host
