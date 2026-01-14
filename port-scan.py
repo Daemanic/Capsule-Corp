@@ -9,7 +9,7 @@ def connect():
     except OSError:
         return False
 
-def checkIP(ipadr):
+def check_ip(ipadr):
     try:
         IP(ipadr)
         return str(ipadr)
@@ -24,7 +24,7 @@ def checkIP(ipadr):
             print("\n[!] syntax-error: [?D]\n")
             return None
 
-def searchIP(ipadr, port):
+def search_ip(ipadr, port):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(1.0)
@@ -46,8 +46,8 @@ def searchIP(ipadr, port):
     except OSError:
         print(f"[-] status: [{port}] | [OS]\n")
 
-def scanIP(ipadr):
-    domain = checkIP(ipadr)
+def scan_ip(ipadr):
+    domain = check_ip(ipadr)
     if domain is None:
         return
     port = input("[?] port: ")
@@ -55,7 +55,7 @@ def scanIP(ipadr):
     for endPort in port.split():
         try:
             if 0 < int(endPort) < 65536:
-                searchIP(domain, int(endPort))
+                search_ip(domain, int(endPort))
             else:
                 print("\n[!] end-port: [?P]\n")
         except ValueError:
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         sys.exit()
     try:
         for perIP in target.split():
-            scanIP(perIP)
+            scan_ip(perIP)
     except KeyboardInterrupt:
         print("\n[0]")
         sys.exit()
