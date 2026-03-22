@@ -16,22 +16,22 @@ def program():
 
 def changeMac(network, macadr):
     device = platform.system()
-    if device == "Darwin" or device == "Linux":
-        try:
+    try:
+        if device == "Linux":
             subprocess.call(["sudo", "ifconfig", network, "down"])
             subprocess.call(["sudo", "ifconfig", network, "hw", "ether", macadr])
             subprocess.call(["sudo", "ifconfig", network, "up"])
-        except subprocess.CalledProcessError:
-            print("[-] error: false root priviledge")
-    else:
-        print(f"[-] error: {device} system detected")
+        else:
+            print(f"[-] error: {device} system detected")
+    except subprocess.CalledProcessError:
+        print("[-] error: false root priviledge")
 
 def macOutput(network):
     try:
         result = subprocess.check_output(["ifconfig", network])
         etherMatch = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(result))
         if etherMatch:
-            return etherMatch.group(0)
+            return etherMatch.group(0).lower()
         else:
             print("[-] error: invalid mac-address")
     except subprocess.SubprocessError:
@@ -39,7 +39,7 @@ def macOutput(network):
 
 option = program()
 changeMac(option.network, option.address)
-if macOutput(option.network) == str(option.address):
+if macOutput(option.network) == str(option.address).lower():
     print(f"[+] mac-address changed to: {str(macOutput(option.network))}")
 else:
     print("[-] error: failed to change mac-address")
