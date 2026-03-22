@@ -18,9 +18,9 @@ def changeMac(network, macadr):
     device = platform.system()
     try:
         if device == "Linux":
-            subprocess.call(["sudo", "ifconfig", network, "down"])
-            subprocess.call(["sudo", "ifconfig", network, "hw", "ether", macadr])
-            subprocess.call(["sudo", "ifconfig", network, "up"])
+            subprocess.check_call(["sudo", "ifconfig", network, "down"])
+            subprocess.check_call(["sudo", "ifconfig", network, "hw", "ether", macadr])
+            subprocess.check_call(["sudo", "ifconfig", network, "up"])
         else:
             print(f"[-] error: {device} system detected")
     except subprocess.CalledProcessError:
