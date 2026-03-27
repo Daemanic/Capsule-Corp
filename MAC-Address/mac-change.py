@@ -6,8 +6,8 @@ import platform
 
 def program():
     parse = argparse.ArgumentParser()
-    parse.add_argument("-n", "--network", required=True, help="interface type for its MAC address")
-    parse.add_argument("-m", "--macaddr", required=True, help="custom user choice MAC address")
+    parse.add_argument("-n", "--network", dest="network", required=True, help="interface type for its MAC address")
+    parse.add_argument("-m", "--macaddr", dest="address", required=True, help="custom user choice MAC address")
     return parse.parse_args()
 
 def changeMac(network, macadr):
