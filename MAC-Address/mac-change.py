@@ -1,28 +1,23 @@
 #!/usr/bin/env python3
 import subprocess
-import optparse
+import argparse
 import re
 import platform
 
 def program():
-    parse = optparse.OptionParser()
-    parse.add_option("-n", "--network", dest="network", help="interface type to change its MAC address")
-    parse.add_option("-m", "--macaddr", dest="address", help="custom user choice MAC address")
-    (option, argument) = parse.parse_args()
-    if not option.network or not option.address:
-        parse.error("use -h or --help")
-    else:
-        return option
+    parse = argparse.ArgumentParser()
+    parse.add_argument("-n", "--network", required=True, help="interface type for its MAC address")
+    parse.add_argument("-m", "--macaddr", required=True, help="custom user choice MAC address")
+    return parse.parse_args()
 
 def changeMac(network, macadr):
-    device = platform.system()
     try:
-        if device == "Linux":
+        if platform.system() == "Linux":
             subprocess.check_call(["sudo", "ifconfig", network, "down"])
             subprocess.check_call(["sudo", "ifconfig", network, "hw", "ether", macadr])
             subprocess.check_call(["sudo", "ifconfig", network, "up"])
         else:
-            print(f"[-] error: {device} system detected")
+            print(f"[-] error: {platform.system()} system detected")
     except subprocess.CalledProcessError:
         print("[-] error: false root priviledge")
 
@@ -37,9 +32,9 @@ def macOutput(network):
     except subprocess.SubprocessError:
         print("[-] error: failed interface")
 
-option = program()
-changeMac(option.network, option.address)
-if macOutput(option.network) == str(option.address).lower():
-    print(f"[+] mac-address changed to: {str(macOutput(option.network))}")
+args = program()
+changeMac(args.network, args.address)
+if macOutput(args.network) == str(args.address).lower():
+    print(f"[+] mac-address changed to: {str(macOutput(args.network))}")
 else:
     print("[-] error: failed to change mac-address")
