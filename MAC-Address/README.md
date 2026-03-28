@@ -1,4 +1,4 @@
-# [0] MAC Address Changer
+# > MAC Address Changer <
 
 A simple Python CLI tool to change the MAC address of a network interface on Linux systems.
 
