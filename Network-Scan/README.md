@@ -45,7 +45,7 @@ sudo python3 script.py -t 192.168.1.1/24
    * MAC address
 5. Displays results in a table
 
-## 📊 Sample Output
+## [?] Sample Output
 
 ```
 +--------------+-------------------+
