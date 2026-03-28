@@ -5,7 +5,7 @@ import prettytable
 
 def program():
     parse = argparse.ArgumentParser()
-    parse.add_argument("-t", "--target", dest="IP", required=True, help="enter network address")
+    parse.add_argument("-t", "--target", dest="ip", required=True, help="enter network address")
     return parse.parse_args()
 
 def scan(ip):
