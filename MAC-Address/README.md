@@ -11,9 +11,9 @@ A simple Python CLI tool to change the MAC address of a network interface on Lin
 
 ## [?] Requirements
 
-* Python 3
+* Python3
 * Linux OS
-* Root privileges (sudo)
+* Root privileges `sudo`
 * `ifconfig` installed
 
 ## [?] Usage
