@@ -20,7 +20,7 @@ A Python-based ARP spoofing script that demonstrates how ARP poisoning works on 
 * Root privileges (required for Scapy)
 * Scapy library
 
-### Install dependencies:
+### Dependencies:
 
 ```bash
 pip install scapy
