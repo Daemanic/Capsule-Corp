@@ -16,7 +16,7 @@ A Python-based network scanner that discovers devices on a local network using A
 * Scapy
 * PrettyTable
 
-### Install dependencies:
+### Dependencies:
 
 ```bash
 pip install scapy prettytable
