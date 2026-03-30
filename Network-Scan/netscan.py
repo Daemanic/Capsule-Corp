@@ -12,7 +12,15 @@ def scan(ip):
     request = scapy.ARP(pdst=ip)
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
     packet = broadcast/request
-    receivedList = scapy.srp(packet, verbose=False, timeout=1)[0]
+    try:
+        receivedList = scapy.srp(packet, verbose=False, timeout=2)[0]
+    except Exception as error:
+        print(f"\n[-] error: {errro}")
+        return
+
+    if not receivedList:
+        print("\n[-] error: no devices found")
+        return
     display = prettytable.PrettyTable(["IP", "MAC Address"])
     for index in receivedList:
         display.add_row([index[1].psrc, index[1].hwsrc])
