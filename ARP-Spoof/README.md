@@ -6,14 +6,14 @@ A Python-based toolkit that demonstrates **ARP spoofing (MITM)** and **HTTP pack
 
 ## [?] Features
 
-### ARP Spoofing (`arp.py`)
+### 1. ARP Spoofing
 
 * Performs ARP poisoning between a target and a gateway
 * Positions attacker as **Man-in-the-Middle (MITM)**
 * Continuously sends spoofed ARP replies
 * Restores ARP tables on exit (Ctrl+C)
 
-### Packet Sniffing (`sniff.py`)
+### 2. Packet Sniffing
 
 * Captures HTTP traffic on the network
 * Extracts visited URLs
