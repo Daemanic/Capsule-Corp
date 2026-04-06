@@ -46,7 +46,7 @@ sudo python3 script.py -n eth0 -m 00:11:22:33:44:55
 
 ```
 MAC-Address/
-│── script.py
+│── mac.py
 │── README.md
 ```
 
