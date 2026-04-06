@@ -1,16 +1,24 @@
-# ARP Spoofing Tool [Educational]
+# ARP Spoofing & Packet Sniffing Tool [Educational]
 
-A Python-based ARP spoofing script that demonstrates how ARP poisoning works on a local network. This tool can be used to understand Man-in-the-Middle (MITM) attack concepts in a controlled lab environment.
+A Python-based toolkit that demonstrates **ARP spoofing (MITM)** and **HTTP packet sniffing** on a local network. This project is designed to help understand how attackers can intercept and analyze network traffic in a controlled lab environment.
 
 ---
 
 ## [?] Features
 
-* Performs ARP spoofing between a target and a gateway
+### ARP Spoofing (`arp.py`)
+
+* Performs ARP poisoning between a target and a gateway
+* Positions attacker as **Man-in-the-Middle (MITM)**
 * Continuously sends spoofed ARP replies
 * Restores ARP tables on exit (Ctrl+C)
-* Uses Scapy for packet crafting
-* Simple CLI interface using `argparse`
+
+### Packet Sniffing (`sniff.py`)
+
+* Captures HTTP traffic on the network
+* Extracts visited URLs
+* Detects possible login data (e.g., usernames, passwords)
+* Uses Scapy for packet inspection
 
 ---
 
@@ -30,72 +38,71 @@ pip install scapy
 
 ## [?] Usage
 
+### 1. Start ARP Spoofing
+
 ```bash
-sudo python3 script.py -t <target-ip> -r <gateway-ip>
+sudo python3 arp.py -t <target-ip> -r <gateway-ip>
 ```
 
-### Example:
+**Example:**
 
 ```bash
-sudo python3 script.py -t 192.168.1.16 -r 192.168.1.1
+sudo python3 arp.py -t 192.168.1.16 -r 192.168.1.1
+```
+
+---
+
+### 2. Start Packet Sniffing
+
+Run this in a **separate terminal**:
+
+```bash
+sudo python3 sniff.py -n <interface>
+```
+
+**Example:**
+
+```bash
+sudo python3 sniff.py -n en0
 ```
 
 ---
 
 ## [?] How It Works
 
-1. Retrieves MAC addresses of:
+1. **ARP Spoofing**
 
-   * Target device
-   * Router (gateway)
+   * Sends fake ARP replies to both target and router
+   * Tricks them into routing traffic through the attacker
 
-2. Sends spoofed ARP responses:
+2. **MITM Position**
 
-   * Tells target: "I am the router"
-   * Tells router: "I am the target"
+   ```
+   Target <----> Attacker <----> Router
+   ```
 
-3. This creates a **Man-in-the-Middle position**
+3. **Packet Sniffing**
 
-4. Continuously maintains spoofing by sending packets in a loop
+   * Captures intercepted traffic
+   * Extracts:
 
-5. On exit (`Ctrl+C`):
-
-   * Restores original ARP mappings
-
----
-
-## [?] ARP Spoofing Flow
-
-```
-Target <----> Attacker <----> Router
-```
-
-* Traffic is redirected through the attacker machine
+     * URLs
+     * Potential login credentials (HTTP only)
 
 ---
 
 ## [?] Important Notes
 
 * Works only on **local networks (LAN)**
-* Requires devices to be on the **same subnet**
-* Must be run with **sudo/root privileges**
+* Devices must be on the **same subnet**
+* Requires **sudo/root privileges**
+* Works mainly on **HTTP (not HTTPS)**
+  *(HTTPS traffic is encrypted and cannot be read)*
 * May temporarily disrupt network connectivity
 
 ---
 
-## [?] Legal Disclaimer
-
-This tool is intended for:
-
-* Educational purposes
-* Ethical hacking labs
-* Authorized network testing only
-
-**Do NOT use this on networks without permission.**
-
----
-
-## [?} Project Structure
+## [?] Project Structure
 
 ```
 ARP-Spoof/
@@ -110,8 +117,19 @@ ARP-Spoof/
 
 * ARP Protocol (Address Resolution Protocol)
 * Layer 2 networking
-* Packet crafting with Scapy
 * Man-in-the-Middle (MITM) attacks
-* Network traffic manipulation
+* Packet sniffing and analysis
+* HTTP vs HTTPS differences
+* Network security fundamentals
+
+---
+
+## [?] Legal Disclaimer
+
+This project is intended for:
+
+* Educational purposes
+* Ethical hacking labs
+* Authorized network testing only
 
 ---
