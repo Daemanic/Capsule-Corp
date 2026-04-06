@@ -66,7 +66,7 @@ sudo python3 script.py -t 192.168.1.1/24
 
 ```
 Network-Scan/
-│── script.py
+│── netscan.py
 │── README.md
 ```
 
