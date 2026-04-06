@@ -99,7 +99,7 @@ This tool is intended for:
 
 ```
 ARP-Spoof/
-│── script.py
+│── arp.py
 │── README.md
 ```
 
