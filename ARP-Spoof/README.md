@@ -119,7 +119,6 @@ ARP-Spoof/
 * Layer 2 networking
 * Man-in-the-Middle (MITM) attacks
 * Packet sniffing and analysis
-* HTTP vs HTTPS differences
 * Network security fundamentals
 
 ---
