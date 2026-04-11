@@ -115,8 +115,6 @@ Do NOT use this tool on systems without explicit permission.
 Project/
 │── script.py
 │── README.md
-│── users.txt
-│── passwords.txt
 ```
 
 ---
