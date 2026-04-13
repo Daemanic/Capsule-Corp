@@ -9,16 +9,16 @@ import os
 
 def check_root():
     if os.geteuid() != 0:
-        print("\n[-] Error: This script requires root privileges.")
-        print("[*] Please run with: sudo python3", " ".join(sys.argv))
+        print("\n[-] error: root privileges required")
+        print("[*] run with: sudo python3", " ".join(sys.argv))
         sys.exit(1)
 
 def validate_mac(mac_address):
     pattern = r'^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$'
     if re.match(pattern, mac_address):
         return True
-    print(f"[-] Error: Invalid MAC address format: {mac_address}")
-    print("[*] Expected format: XX:XX:XX:XX:XX:XX")
+    print(f"[-] error: invalid MAC address format: {mac_address}")
+    print("[*] expected format: XX:XX:XX:XX:XX:XX")
     return False
 
 def get_current_mac(network):
@@ -50,10 +50,10 @@ def get_current_mac(network):
         return None
         
     except subprocess.CalledProcessError as error:
-        print(f"[-] Error: Failed to get interface info: {error}")
+        print(f"[-] error: failed to get interface info: {error}")
         return None
     except FileNotFoundError:
-        print("[-] Error: Required command not found")
+        print("[-] error: required command not found")
         return None
 
 
@@ -122,9 +122,9 @@ if __name__ == "__main__":
     if change_mac(args.network, mac_address):
         new_mac = get_current_mac(args.network)
         if new_mac == mac_address:
-            print(f"[+] Success! MAC address changed to: {new_mac}")
+            print(f"[+] success: MAC address changed to {new_mac}")
         else:
-            print(f"[-] Warning: MAC mismatch (expected: {mac_address}, got: {new_mac})")
+            print(f"[-] warning: MAC mismatch (expected: {mac_address}, got: {new_mac})")
     else:
-        print("[-] Failed to change MAC address")
+        print("[-] failed to change MAC address")
         sys.exit(1)
