@@ -113,7 +113,7 @@ Do NOT use this tool on systems without explicit permission.
 
 ```id="h7k2pl"
 Project/
-│── script.py
+│── captcha.py
 │── README.md
 ```
 
