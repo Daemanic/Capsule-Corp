@@ -7,8 +7,8 @@ proxies = {'http:': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
 
 def exploit(url, payload):
     uri = ""
-    connect = requests.get(url + uri + payload, verify=False, proxies=proxies)
-    if "Cat Grin" in connect.text:
+    request = requests.get(url + uri + payload, verify=False, proxies=proxies)
+    if "Cat Grin" in request.text:
         return True
     else:
         return False
