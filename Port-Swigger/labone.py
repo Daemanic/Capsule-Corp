@@ -18,7 +18,7 @@ if __name__ == "__main__":
         url = sys.argv[1].strip()
         payload = sys.argv[2].strip()
     except IndexError:
-        print(f"[-] syntax-error: {sys.argv[0]} <url> <payload>")
+        print(f"[~] syntax-error: {sys.argv[0]} <url> <payload>")
         sys.exit()
 
     if exploit(url, payload):
