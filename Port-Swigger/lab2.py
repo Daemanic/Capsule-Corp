@@ -30,7 +30,7 @@ if __name__ == "__main__":
         url = str(sys.argv[1].strip())
         payload = str(sys.argv[2].strip())
     except IndexError:
-        print(f"[!] syntax-error: {sys.argv[0]} <url> <payload>")
+        print(f"[!] syntax-error: {sys.argv[0]} <url> <username>")
         sys.exit(1)
 
     session = requests.Session()
