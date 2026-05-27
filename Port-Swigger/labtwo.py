@@ -28,8 +28,8 @@ def exploit(session, url, payload):
 
 if __name__ == "__main__":
     try:
-        url = sys.argv[1].strip()
-        payload = sys.argv[2].strip()
+        url = str(sys.argv[1].strip())
+        payload = str(sys.argv[2].strip())
     except IndexError:
         print(f"[!] syntax-error: {sys.argv[0]} <url> <payload>")
         sys.exit(1)
