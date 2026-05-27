@@ -8,7 +8,7 @@ proxies = {'http': 'http://127.0.0.1:8080', 'https': 'https://127.0.0.1:8080'}
 
 def token(session, url):
     request = session.get(url, verify=False, proxies=proxies)
-    soup = BeautifulSoup(request.txt, 'html.parser')
+    soup = BeautifulSoup(request.text, 'html.parser')
     search = soup.find("input")
     csrf = search.get("value") if search else None
     return csrf
