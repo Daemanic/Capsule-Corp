@@ -19,7 +19,7 @@ if __name__ == "__main__":
         payload = sys.argv[2].strip()
     except IndexError:
         print(f"[!] syntax-error: {sys.argv[0]} <url> <payload>")
-        sys.exit()
+        sys.exit(1)
 
     if exploit(url, payload):
         print("[+] status: success")
