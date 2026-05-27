@@ -39,7 +39,7 @@ if __name__ == "__main__":
     numCol = exploit(url)
     if numCol:
         print(f"[+] detected: [{numCol}]")
-        print("[?] locating...")
+        print("[?] testing...")
         strCol = stringField(url, numCol)
         if strCol:
             print(f"[+] changeable: [{strCol}]")
