@@ -20,7 +20,7 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
     except IndexError:
-        print(f"[!] syntax-error: {sys.argv[0]} <url> <range>")
+        print(f"[!] error: {sys.argv[0]} <url> <range>")
         sys.exit(1)
     numCol = exploit(url)
     print("[?] status: calculating...")
