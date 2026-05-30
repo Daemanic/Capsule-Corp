@@ -33,7 +33,7 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
     except IndexError:
-        print("[!] syntax-error: {sys.argv[0]} <url> <range> <int/str>")
+        print("[!] error: {sys.argv[0]} <url> <range> <int/str>")
         sys.exit(1)
     print("[?] calculating...")
     numCol = exploit(url)
