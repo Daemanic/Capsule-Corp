@@ -29,7 +29,7 @@ if __name__ == "__main__":
         url = sys.argv[1].strip()
         username = sys.argv[2].strip()
     except IndexError:
-        print(f"[!] syntax-error: {sys.argv[0]} <url> <username>")
+        print(f"[!] error: {sys.argv[0]} <url> <username>")
         sys.exit(1)
     print("[?] scanning database...")
     if not exploit(url, username):
