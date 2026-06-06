@@ -15,7 +15,7 @@ def exploit(url):
     if "Oracle Database" in response:
         print("[+] status: success")
         soup = BeautifulSoup(response, 'html.parser')
-        ver = soup.find(text=re.compile('*.Oracle\sDatabase.*'))
+        ver = soup.find(text=re.compile('.*Oracle\sDatabase.*'))
         print(f"[+] version: {ver}")
         return True
     return False
