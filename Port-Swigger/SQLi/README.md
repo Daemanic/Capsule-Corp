@@ -2,7 +2,7 @@
 
 This directory contains my solutions, notes, and payloads for SQL Injection labs from PortSwigger Web Security Academy.
 
-## Overview
+## [?] Overview
 
 SQL Injection is one of the most impactful web application vulnerabilities. It occurs when untrusted user input is incorporated into SQL queries without proper sanitization, allowing attackers to manipulate database queries.
 
@@ -19,7 +19,7 @@ The labs in this directory cover:
 * Out of band SQL Injection
 * Filter bypass techniques
 
-## Directory Structure
+## [?] Directory Structure
 
 ```text
 SQLi/
@@ -39,7 +39,7 @@ Each lab directory may include:
 * Screenshots
 * Key takeaways
 
-## Skills Practiced
+## [?] Skills Practiced
 
 * Identifying SQL Injection entry points
 * Enumerating database structure
@@ -49,7 +49,7 @@ Each lab directory may include:
 * Bypassing filters and WAF restrictions
 * Database fingerprinting
 
-## Example Payloads
+## [?] Example Payloads
 
 ### Authentication Bypass
 
@@ -57,37 +57,37 @@ Each lab directory may include:
 ' OR 1=1--
 ```
 
-### UNION Attack
+### [?] UNION Attack
 
 ```sql
 ' UNION SELECT NULL,NULL--
 ```
 
-### Extract Database Version
+### [?] Extract Database Version
 
 ```sql
 ' UNION SELECT @@version,NULL--
 ```
 
-### Blind SQLi Boolean Condition
+### [?] Blind SQLi Boolean Condition
 
 ```sql
 ' AND 1=1--
 ```
 
-## Learning Resources
+## [?] Learning Resources
 
 * PortSwigger Web Security Academy
 * SQL Injection Cheat Sheet
 * OWASP SQL Injection Prevention Cheat Sheet
 
-## Disclaimer
+## [?] Disclaimer
 
 This repository is intended for educational purposes only.
 
 All exercises are performed within intentionally vulnerable environments provided by PortSwigger Web Security Academy. Do not attempt these techniques against systems without explicit authorization.
 
-## Status
+## [?] Status
 
 * Ongoing
 * Labs are added as I complete them.
